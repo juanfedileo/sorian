@@ -10,12 +10,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Servidor {
-	ArrayList<Turno> ListaTurnos;
 	int Port;
+	GestorTurnos Gestor;
 	
-	public Servidor(int Port) {
+	public Servidor(int Port, GestorTurnos Gestor) {
 		super();
-		ListaTurnos = new ArrayList<Turno>();
+		this.Gestor = Gestor;
 		this.Port = Port;
 
 	}
@@ -24,16 +24,17 @@ public class Servidor {
 		 
 			 
 			 	try {
-				 		ServerSocket serverSocket  = new ServerSocket(5000);
+				 		ServerSocket serverSocketCliente  = new ServerSocket(5000);
 				 		while(Port == 5000) {
-				 		Socket socket = serverSocket.accept();
+				 		Socket socket = serverSocketCliente.accept();
 				 		PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 				 		BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 						
 				 		String DNI = in.readLine();
-						int turnoID = CreadorTurno(DNI);
+						int turnoID = Gestor.CreadorTurno(DNI);
 						out.println(turnoID);
 							socket.close();
+							serverSocketCliente.close();
 						}
 				} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -43,25 +44,51 @@ public class Servidor {
 
 	}
 	
+	public void StartServidorMonitor(){
+		 
+		 
+	 	try {
+		 		ServerSocket serverSocket  = new ServerSocket(1234);
+		 		while(Port == 1234) {
+			 		Socket socket = serverSocket.accept();
+			 		PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+			 		BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+					
+			 		
+			 		//String DNI = in.readLine();
+					//int turnoID = CreadorTurno(DNI);
+					//out.println(turnoID);
+					socket.close();
+				}
+		} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+		} 
+	 
+
+}
+	
 	public void StartServidorVendedor() {
 			
-	 	
+	 		Turno SiguienteTurno;
 			 try {
-				 ServerSocket serverSocket = new ServerSocket();
-				 while (Port == 4400) {
-					 Socket socket = serverSocket.accept();
+				 ServerSocket serverSocketVendedor = new ServerSocket(4949);
+				 while (Port == 4949) {
+					 
+					 Socket socket = serverSocketVendedor.accept();
 					 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 					 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-					 System.out.println(ListaTurnos.isEmpty());
-					 if (ListaTurnos.isEmpty() == false){
-						 Turno siguienteTurno = ListaTurnos.get(0);
-						 String DNI = siguienteTurno.getDNI();
-						 out.println(DNI);
-						 out.println(siguienteTurno.getTurnoID());
+					 
+					 SiguienteTurno = Gestor.getNextTurn();
+					 
+					 if (SiguienteTurno == null){
 						 
-						 ListaTurnos.remove(0);
+						 String DNI = SiguienteTurno.getDNI();
+						 out.println(DNI);
+						 out.println(SiguienteTurno.getTurnoID());
 					 }
 					 socket.close();
+					 serverSocketVendedor.close();
 				 }
 				
 				} catch (IOException e) {
@@ -71,18 +98,6 @@ public class Servidor {
 		
 	}
 	
-	public int CreadorTurno(String DNI) {
-		Turno NuevoTurno;
-		try {
-			NuevoTurno = new Turno(DNI);
-			ListaTurnos.add(NuevoTurno);
-			return NuevoTurno.getTurnoID();
-		}
-		catch(TurnoInvalidoException e) {
-			//Ventana Error
-			return 0;
-		}
-	}
 	
 	
 }

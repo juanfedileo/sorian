@@ -99,7 +99,7 @@ public class VentanaVendedor extends JFrame {
 				
 				try {
 					
-					Socket socket = new Socket("localhost",4400);
+					Socket socket = new Socket("localhost",4949);
 					PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 					BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 					

@@ -8,13 +8,16 @@ public class Main {
 		VentanaCliente ClienteVista;
 		VentanaMonitor MonitorVista;
 		VentanaVendedor VendedorVista;
+		GestorTurnos TurnosDelDia;
 		int puertoCliente = 5000;
-		int puertoVendedor = 4400;
+		int puertoVendedor = 4949;
 		int puertoMonitor = 1234;
 		Servidor ServerCliente;
 		Servidor ServerMonitor;
 		Servidor ServerVendedor;
-	
+		
+
+		
 		ClienteVista = new VentanaCliente();
 		MonitorVista = new VentanaMonitor();
 		VendedorVista = new VentanaVendedor();
@@ -23,14 +26,15 @@ public class Main {
 		MonitorVista.setVisible(true);
 		VendedorVista.setVisible(true);	
 
-
-		ServerCliente = new Servidor(puertoCliente);
-		ServerMonitor = new Servidor(puertoMonitor);
-		ServerVendedor = new Servidor(puertoVendedor);
+		TurnosDelDia = new GestorTurnos();
+		ServerCliente = new Servidor(puertoCliente,TurnosDelDia);
+		ServerMonitor = new Servidor(puertoMonitor,TurnosDelDia);
+		ServerVendedor = new Servidor(puertoVendedor,TurnosDelDia);
 		
+		ServerVendedor.StartServidorVendedor();
 		ServerCliente.StartServidorCliente();
 		ServerMonitor.StartServidorMonitor();
-		ServerVendedor.StartServidorVendedor();
+		
 		
 	}
 
