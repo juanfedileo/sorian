@@ -7,25 +7,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Server.Controlador;
-
+import java.net.Socket;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import Server.*;
 
 public class VentanaVendedor extends JFrame {
-	
-	private Controlador control;
+
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
-	
-	
-	
+
 	
 	/**
 	 * Launch the application.
@@ -95,8 +90,4 @@ public class VentanaVendedor extends JFrame {
 		panel_1.add(btnNewButton);
 	}
 	
-	public void setControl(Controlador control) {
-		this.control = control;
-	}
-
 }

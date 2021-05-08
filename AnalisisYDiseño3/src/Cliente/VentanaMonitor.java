@@ -7,18 +7,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Server.Controlador;
-
+import java.net.Socket;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JList;
-import Server.*;
 
 public class VentanaMonitor extends JFrame {
-	
-	private Controlador control;
+
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -96,7 +93,5 @@ public class VentanaMonitor extends JFrame {
 		JList list = new JList();
 		panel_5.add(list);
 	}
-	public void setControl(Controlador control) {
-		this.control = control;
-	}
+
 }

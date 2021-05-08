@@ -3,14 +3,11 @@ package Cliente;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import Server.*;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Server.Controlador;
-
+import java.net.Socket;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import java.awt.Label;
@@ -23,7 +20,6 @@ import java.awt.event.ActionEvent;
 
 public class VentanaCliente extends JFrame {
 
-	private Controlador control;
 	private JPanel contentPane;
 	private JTextField textField_Documento;
 	private String documentoaux = "";
@@ -70,7 +66,9 @@ public class VentanaCliente extends JFrame {
 		btnNewButton_11.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				TurnoID= control.CreadorTurno(documentoaux);
+				
+				//ACA SE HACE EL SOCKET
+				//TurnoID= control.CreadorTurno(documentoaux);
 				textField_Muestrodoc.setText(documentoaux);
 				textField_MuestroTurno.setText(""+TurnoID);
 				textField_Documento.setText(null);
@@ -256,7 +254,4 @@ public class VentanaCliente extends JFrame {
 		textField_MuestroTurno.setColumns(10);
 	}
 	
-	public void setControl(Controlador control) {
-		this.control = control;
-	}
 }
