@@ -19,7 +19,7 @@ import java.awt.event.ActionEvent;
 import controlador.*;
 
 public class VentanaCliente extends JFrame {
-	
+
 	private Controlador control;
 	private JPanel contentPane;
 	private JTextField textField_Documento;
@@ -251,5 +251,9 @@ public class VentanaCliente extends JFrame {
 		textField_MuestroTurno.setEditable(false);
 		panel_2.add(textField_MuestroTurno);
 		textField_MuestroTurno.setColumns(10);
+	}
+	
+	public void setControl(Controlador control) {
+		this.control = control;
 	}
 }

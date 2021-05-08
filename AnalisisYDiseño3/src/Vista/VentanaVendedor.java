@@ -94,5 +94,9 @@ public class VentanaVendedor extends JFrame {
 		});
 		panel_1.add(btnNewButton);
 	}
+	
+	public void setControl(Controlador control) {
+		this.control = control;
+	}
 
 }

@@ -96,5 +96,7 @@ public class VentanaMonitor extends JFrame {
 		JList list = new JList();
 		panel_5.add(list);
 	}
-
+	public void setControl(Controlador control) {
+		this.control = control;
+	}
 }
