@@ -52,6 +52,7 @@ public class VentanaVendedor extends JFrame {
 		
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2, BorderLayout.SOUTH);
+		panel_2.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		JLabel lblNewLabel = new JLabel("Tiempo de espera");
 		panel_2.add(lblNewLabel);
