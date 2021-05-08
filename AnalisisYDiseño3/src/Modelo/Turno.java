@@ -1,10 +1,12 @@
 package Modelo;
 
+import java.util.Calendar;
 
 public class Turno {
 	
 	int TurnoID;
 	String DNI;
+	Calendar TurnoFecha;
 	static int TurnoContador = 0;
 	
 	public Turno(String DNI) throws TurnoInvalidoException {
@@ -16,6 +18,7 @@ public class Turno {
 			this.DNI = DNI;
 			TurnoContador++;
 			TurnoID = TurnoContador;
+			TurnoFecha = Calendar.getInstance();
 		}
 		else {
 			//DNI INVÁLIDO
@@ -31,6 +34,10 @@ public class Turno {
 
 	public String getDNI() {
 		return DNI;
+	}
+	
+	public Calendar getTurnoFecha() {
+		return TurnoFecha;	
 	}
 
 	@Override
