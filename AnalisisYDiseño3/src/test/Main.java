@@ -10,12 +10,15 @@ public class Main {
 		VentanaCliente ClienteVista;
 		VentanaMonitor MonitorVista;
 		VentanaVendedor VendedorVista;
+		Controlador control;
+		control = new Controlador();
 		ClienteVista = new VentanaCliente();
 		MonitorVista = new VentanaMonitor();
 		VendedorVista = new VentanaVendedor();
 		ClienteVista.setVisible(true);
 		MonitorVista.setVisible(true);
 		VendedorVista.setVisible(true);
+		
 	}
 
 }

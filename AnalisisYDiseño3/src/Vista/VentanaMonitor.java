@@ -6,14 +6,19 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.Controlador;
+
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JList;
+import controlador.*;
 
 public class VentanaMonitor extends JFrame {
-
+	
+	private Controlador control;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;

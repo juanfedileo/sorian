@@ -6,18 +6,19 @@ import Vista.*;
 
 
 public class Controlador {
-	ArrayList<Turno> ListaTurnos= new ArrayList<Turno>();
+	ArrayList<Turno> ListaTurnos;
 	
 	public Controlador() {
 		super();
+		ListaTurnos = new ArrayList<Turno>();
+		
 	}
 
-	public static int CreadorTurno(String DNI) {
+	public int CreadorTurno(String DNI) {
 		Turno NuevoTurno;
 		try {
-			
 			NuevoTurno = new Turno(DNI);
-		
+			ListaTurnos.add(NuevoTurno);
 			return NuevoTurno.getTurnoID();
 		}
 		catch(TurnoInvalidoException e) {

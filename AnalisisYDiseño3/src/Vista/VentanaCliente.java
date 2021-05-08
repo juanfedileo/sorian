@@ -16,9 +16,11 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import controlador.*;
 
 public class VentanaCliente extends JFrame {
-
+	
+	private Controlador control;
 	private JPanel contentPane;
 	private JTextField textField_Documento;
 	private String documentoaux = "";
@@ -65,7 +67,7 @@ public class VentanaCliente extends JFrame {
 		btnNewButton_11.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				TurnoID=Controlador.CreadorTurno(documentoaux);
+				TurnoID= control.CreadorTurno(documentoaux);
 				textField_Muestrodoc.setText(documentoaux);
 				textField_MuestroTurno.setText(""+TurnoID);
 				textField_Documento.setText(null);
