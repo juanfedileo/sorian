@@ -1,13 +1,16 @@
-package Vista;
+package Cliente;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import controlador.*;
+import Server.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Server.Controlador;
+
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import java.awt.Label;
@@ -16,7 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import controlador.*;
+
 
 public class VentanaCliente extends JFrame {
 

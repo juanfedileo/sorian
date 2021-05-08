@@ -1,8 +1,6 @@
-package controlador;
+package Server;
 import java.util.ArrayList;
-
-import Modelo.*;
-import Vista.*;
+import Cliente.*;
 
 
 public class Controlador {

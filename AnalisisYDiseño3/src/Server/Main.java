@@ -1,7 +1,8 @@
-package test;
-import Vista.*;
-import controlador.*;
-import Modelo.*;
+package Server;
+import Cliente.VentanaCliente;
+import Cliente.VentanaMonitor;
+import Cliente.VentanaVendedor;
+import Cliente.*;
 
 public class Main {
 

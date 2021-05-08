@@ -1,4 +1,4 @@
-package Modelo;
+package Server;
 
 public class TurnoInvalidoException extends Exception {
 
