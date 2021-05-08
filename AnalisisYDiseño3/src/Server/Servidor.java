@@ -22,42 +22,19 @@ public class Servidor {
 	public void StartServidorVentanaCliente(){
 		
 		 try {
-			 Socket socket;
-			 ServerSocket serverSocket;
-			 int Port = 0;
 			 
-			 Port = socket.getPort();
-			 switch (Port) {
-		 		case 5000:
-		 			serverSocket = new ServerSocket(5000);
-		 			while(true) {
-		 				 socket = serverSocket.accept();
-						 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-						 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			 ServerSocket serverSocket  = new ServerSocket(5000);
+		 	 while(true) {
+		 		Socket socket = serverSocket.accept();
+		 		PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+		 		BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 						 
-						 String DNI = in.readLine();
-						 int turnoID = CreadorTurno(DNI);
-						 out.println(turnoID);
-						 socket.close();
-					}
-		 		break;
-		 		case 4400:	 
-		 			serverSocket = new ServerSocket(4400);
-					 while (true) {
-						 socket = serverSocket.accept();
-						 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-						 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-						 
-						 Turno siguienteTurno = ListaTurnos.get(0);
-						 out.println(siguienteTurno.getDNI());
-						 out.println(siguienteTurno.getTurnoID());
-						 
-						 ListaTurnos.remove(0);
-						 
-						 socket.close();
-					 }
-		 		break;
-			 }	
+		 		String DNI = in.readLine();
+				int turnoID = CreadorTurno(DNI);
+				out.println(turnoID);
+					socket.close();
+				}
+	
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
