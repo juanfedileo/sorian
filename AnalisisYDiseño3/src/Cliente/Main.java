@@ -10,8 +10,9 @@ public class Main {
 		VentanaVendedor VendedorVista;
 		Servidor Server;
 		
-		Server = new Servidor();
-		Server.StartServidorVentanaCliente();
+	
+		//Server.StartServidorVentanaVendedor();
+		
 		
 		ClienteVista = new VentanaCliente();
 		MonitorVista = new VentanaMonitor();
@@ -19,7 +20,9 @@ public class Main {
 
 		ClienteVista.setVisible(true);
 		MonitorVista.setVisible(true);
-		VendedorVista.setVisible(true);
+		VendedorVista.setVisible(true);	
+		Server = new Servidor();
+		Server.StartServidorVentanaCliente();
 	}
 
 }

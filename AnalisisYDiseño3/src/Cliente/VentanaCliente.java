@@ -74,9 +74,6 @@ public class VentanaCliente extends JFrame {
 					
 				try {
 					
-					//ACA SE HACE EL SOCKET
-					//TurnoID= control.CreadorTurno(documentoaux);
-					
 					Socket socket = new Socket("localhost",5000);
 					PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 					BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));

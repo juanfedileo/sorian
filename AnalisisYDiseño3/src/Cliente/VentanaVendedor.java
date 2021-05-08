@@ -13,13 +13,18 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.awt.event.ActionEvent;
 
 public class VentanaVendedor extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField TextField_Doc;
+	private JTextField TextField_Turno;
 
 	
 	/**
@@ -61,23 +66,29 @@ public class VentanaVendedor extends JFrame {
 		panel_2.add(lblNewLabel);
 		
 		textField = new JTextField();
+		textField.setEditable(false);
 		panel_2.add(textField);
 		textField.setColumns(10);
 		
 		JPanel panel_3 = new JPanel();
 		panel.add(panel_3, BorderLayout.CENTER);
-		panel_3.setLayout(new GridLayout(3, 2, 0, 0));
+		panel_3.setLayout(new GridLayout(4, 2, 0, 0));
 		
 		JLabel lblNewLabel_2 = new JLabel("Turno Actual");
 		panel_3.add(lblNewLabel_2);
 		
+		TextField_Turno = new JTextField();
+		TextField_Turno.setEditable(false);
+		TextField_Turno.setColumns(10);
+		panel_3.add(TextField_Turno);
+		
 		JLabel lblNewLabel_1 = new JLabel("Numero de documento :");
 		panel_3.add(lblNewLabel_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setEditable(false);
-		panel_3.add(textField_1);
-		textField_1.setColumns(10);
+		TextField_Doc = new JTextField();
+		TextField_Doc.setEditable(false);
+		panel_3.add(TextField_Doc);
+		TextField_Doc.setColumns(10);
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1);
@@ -85,6 +96,29 @@ public class VentanaVendedor extends JFrame {
 		JButton btnNewButton = new JButton("Siguiente");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					
+					Socket socket = new Socket("localhost",4400);
+					PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+					BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+					
+					String documento = in.readLine();
+					String turnoActual = in.readLine();
+					//String fecha = in.readLine();
+					
+					String TurnoID = in.readLine();
+					
+					TextField_Doc.setText(documento);
+					TextField_Doc.setText(turnoActual);
+					socket.close();
+					out.close();
+				}
+				catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		panel_1.add(btnNewButton);
