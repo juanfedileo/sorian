@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import java.awt.Label;
@@ -15,6 +16,10 @@ import java.awt.TextField;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.awt.event.ActionEvent;
 
 
@@ -26,7 +31,7 @@ public class VentanaCliente extends JFrame {
 	private int TurnoID;
 	private JTextField textField_Muestrodoc;
 	private JTextField textField_MuestroTurno;
-
+	int port = 5000;
 	/**
 	 * Launch the application.
 	 */
@@ -64,16 +69,33 @@ public class VentanaCliente extends JFrame {
 		
 		JButton btnNewButton_11 = new JButton("Pedir Turno");
 		btnNewButton_11.addActionListener(new ActionListener() {
+		
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				//ACA SE HACE EL SOCKET
-				//TurnoID= control.CreadorTurno(documentoaux);
-				textField_Muestrodoc.setText(documentoaux);
-				textField_MuestroTurno.setText(""+TurnoID);
-				textField_Documento.setText(null);
-				documentoaux="";
-				
+					
+				try {
+					
+					//ACA SE HACE EL SOCKET
+					//TurnoID= control.CreadorTurno(documentoaux);
+					
+					Socket socket = new Socket("localhost",5000);
+					PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+					BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+					
+					out.println(documentoaux);
+					
+					String TurnoID = in.readLine();
+					textField_Muestrodoc.setText(documentoaux);
+					textField_MuestroTurno.setText(TurnoID);				
+					textField_Documento.setText(null);
+					documentoaux="";
+					socket.close();
+					out.close();
+				}
+				catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
 			}
 		});
 		panel_4.add(btnNewButton_11);

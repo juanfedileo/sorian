@@ -11,6 +11,8 @@ public class Main {
 		Servidor Server;
 		
 		Server = new Servidor();
+		Server.StartServidorVentanaCliente();
+		
 		ClienteVista = new VentanaCliente();
 		MonitorVista = new VentanaMonitor();
 		VendedorVista = new VentanaVendedor();
