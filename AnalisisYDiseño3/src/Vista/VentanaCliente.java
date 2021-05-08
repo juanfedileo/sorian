@@ -65,7 +65,7 @@ public class VentanaCliente extends JFrame {
 		btnNewButton_11.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Controlador.CreadorTurno(documentoaux, TurnoID);
+				TurnoID=Controlador.CreadorTurno(documentoaux);
 				textField_Muestrodoc.setText(documentoaux);
 				textField_MuestroTurno.setText(""+TurnoID);
 				textField_Documento.setText(null);

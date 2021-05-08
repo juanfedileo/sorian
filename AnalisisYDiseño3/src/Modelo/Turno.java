@@ -1,10 +1,11 @@
 package Modelo;
 
+
 public class Turno {
 	
-	static int TurnoContador = 0;
 	int TurnoID;
 	String DNI;
+	static int TurnoContador = 0;
 	
 	public Turno(String DNI) throws TurnoInvalidoException {
 		

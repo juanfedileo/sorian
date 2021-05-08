@@ -4,15 +4,16 @@ import Vista.*;
 
 public class Controlador {
 	
-	public static void CreadorTurno(String DNI, int TurnoID) {
+	public static int CreadorTurno(String DNI) {
 		Turno NuevoTurno;
 		try {
 			
 			NuevoTurno = new Turno(DNI);
-			TurnoID = NuevoTurno.getTurnoID();
+			return NuevoTurno.getTurnoID();
 		}
 		catch(TurnoInvalidoException e) {
 			//Ventana Error
+			return 0;
 		}
 	}
 }
