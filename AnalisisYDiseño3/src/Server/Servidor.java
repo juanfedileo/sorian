@@ -11,63 +11,63 @@ import java.net.Socket;
 
 public class Servidor {
 	ArrayList<Turno> ListaTurnos;
-	int PortMonitor = 1234;
+	int Port;
 	
-	public Servidor() {
+	public Servidor(int Port) {
 		super();
 		ListaTurnos = new ArrayList<Turno>();
-			
+		this.Port = Port;
+
 	}
 	
-	public void StartServidorVentanaCliente(){
-		
-		 try {
+	public void StartServidorCliente(){
+		 
 			 
-			 ServerSocket serverSocket  = new ServerSocket(5000);
-		 	 while(true) {
-		 		Socket socket = serverSocket.accept();
-		 		PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-		 		BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-						 
-		 		String DNI = in.readLine();
-				int turnoID = CreadorTurno(DNI);
-				out.println(turnoID);
-					socket.close();
-				}
-	
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		
-		
-		
+			 	try {
+				 		ServerSocket serverSocket  = new ServerSocket(5000);
+				 		while(Port == 5000) {
+				 		Socket socket = serverSocket.accept();
+				 		PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+				 		BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+						
+				 		String DNI = in.readLine();
+						int turnoID = CreadorTurno(DNI);
+						out.println(turnoID);
+							socket.close();
+						}
+				} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+				} 
+			 
+
 	}
 	
-	public void StartServidorVentanaVendedor(){
-		
-		 try {
-			 ServerSocket serverSocket = new ServerSocket(4400);
-			 while (true) {
-				 Socket socket = serverSocket.accept();
-				 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-				 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-				 
-				 Turno siguienteTurno = ListaTurnos.get(0);
-				 out.println(siguienteTurno.getDNI());
-				 out.println(siguienteTurno.getTurnoID());
-				 
-				 ListaTurnos.remove(0);
-				 
-				 socket.close();
-			 }
+	public void StartServidorVendedor() {
 			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		
-		
+	 	
+			 try {
+				 ServerSocket serverSocket = new ServerSocket();
+				 while (Port == 4400) {
+					 Socket socket = serverSocket.accept();
+					 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+					 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+					 System.out.println(ListaTurnos.isEmpty());
+					 if (ListaTurnos.isEmpty() == false){
+						 Turno siguienteTurno = ListaTurnos.get(0);
+						 String DNI = siguienteTurno.getDNI();
+						 out.println(DNI);
+						 out.println(siguienteTurno.getTurnoID());
+						 
+						 ListaTurnos.remove(0);
+					 }
+					 socket.close();
+				 }
+				
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
 		
 	}
 	

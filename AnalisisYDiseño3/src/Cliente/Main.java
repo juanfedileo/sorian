@@ -8,12 +8,13 @@ public class Main {
 		VentanaCliente ClienteVista;
 		VentanaMonitor MonitorVista;
 		VentanaVendedor VendedorVista;
-		Servidor Server;
-		
+		int puertoCliente = 5000;
+		int puertoVendedor = 4400;
+		int puertoMonitor = 1234;
+		Servidor ServerCliente;
+		Servidor ServerMonitor;
+		Servidor ServerVendedor;
 	
-		//Server.StartServidorVentanaVendedor();
-		
-		
 		ClienteVista = new VentanaCliente();
 		MonitorVista = new VentanaMonitor();
 		VendedorVista = new VentanaVendedor();
@@ -21,8 +22,16 @@ public class Main {
 		ClienteVista.setVisible(true);
 		MonitorVista.setVisible(true);
 		VendedorVista.setVisible(true);	
-		Server = new Servidor();
-		Server.StartServidorVentanaCliente();
+
+
+		ServerCliente = new Servidor(puertoCliente);
+		ServerMonitor = new Servidor(puertoMonitor);
+		ServerVendedor = new Servidor(puertoVendedor);
+		
+		ServerCliente.StartServidorCliente();
+		ServerMonitor.StartServidorMonitor();
+		ServerVendedor.StartServidorVendedor();
+		
 	}
 
 }
