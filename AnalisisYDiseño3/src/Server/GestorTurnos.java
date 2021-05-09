@@ -37,5 +37,12 @@ public class GestorTurnos {
 		}
 		
 	}
+
+	public ArrayList<Turno> getListaTurnos() {
+		return ListaTurnos;
+	}
+
+	
+	
 	
 }

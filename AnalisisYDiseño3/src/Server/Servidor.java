@@ -48,12 +48,13 @@ public class Servidor {
 		t2.start();
 	}
 
-	public void StartServidorMonitor() {
+	public void StartServidorMonitor() { 
 
 		Thread t1 = new Thread() {
 
 			@Override
 			public void run() {
+				Turno SiguienteTurno;
 				try {
 					ServerSocket serverSocket = new ServerSocket(1234);
 					while (!serverSocket.isClosed()) {
@@ -61,10 +62,11 @@ public class Servidor {
 						PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 						BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-						// String DNI = in.readLine();
-						// int turnoID = CreadorTurno(DNI);
-						// out.println(turnoID);
-						//socket.close();
+						 //String DNI = in.readLine();
+						 //SiguienteTurno = Gestor.getNextTurn();
+						 //int turnoID = SiguienteTurno.TurnoID;//CreadorTurno(DNI);
+						 //out.println(turnoID);
+						 socket.close();
 					}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
