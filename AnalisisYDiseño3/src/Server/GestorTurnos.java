@@ -1,21 +1,32 @@
 package Server;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class GestorTurnos {
+import Cliente.VentanaMonitor;
 
-	ArrayList<Turno> ListaTurnos;
+public class GestorTurnos extends Observable {
+
+	ArrayList<Turno> listaTurnos;
+	private static GestorTurnos instance = null;
 	
-	public GestorTurnos() {
-		// TODO Auto-generated constructor stub
-		ListaTurnos = new ArrayList<Turno>();
+	private GestorTurnos() {
+		listaTurnos = new ArrayList<Turno>();
+	}
+	
+	public static GestorTurnos getInstance(VentanaMonitor o) {
+		if (instance == null) {
+			instance = new GestorTurnos();
+			instance.addObserver(o);
+		}
+		return instance;
 	}
 	
 	public int CreadorTurno(String DNI) {
 		Turno NuevoTurno;
 		try {
 			NuevoTurno = new Turno(DNI);
-			ListaTurnos.add(NuevoTurno);
+			listaTurnos.add(NuevoTurno);
 			return NuevoTurno.getTurnoID();
 		}
 		catch(TurnoInvalidoException e) {
@@ -26,9 +37,9 @@ public class GestorTurnos {
 
 	public Turno getNextTurn() {
 		
-		if (ListaTurnos.isEmpty() == false){
-			Turno siguiente = ListaTurnos.get(0);
-			ListaTurnos.remove(0);
+		if (listaTurnos.isEmpty() == false){
+			Turno siguiente = listaTurnos.get(0);
+			listaTurnos.remove(0);
 			return siguiente;
 		}
 		else {
@@ -39,7 +50,7 @@ public class GestorTurnos {
 	}
 
 	public ArrayList<Turno> getListaTurnos() {
-		return ListaTurnos;
+		return listaTurnos;
 	}
 
 	

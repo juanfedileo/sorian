@@ -12,9 +12,7 @@ public class Main {
 		int puertoCliente = 5000;
 		int puertoVendedor = 4949;
 		int puertoMonitor = 1234;
-		Servidor ServerCliente;
 		Servidor ServerMonitor;
-		Servidor ServerVendedor;
 		
 
 		
@@ -26,16 +24,11 @@ public class Main {
 		MonitorVista.setVisible(true);
 		VendedorVista.setVisible(true);	
 
-		TurnosDelDia = new GestorTurnos();
-		ServerCliente = new Servidor(puertoCliente,TurnosDelDia);
+		TurnosDelDia = GestorTurnos.getInstance();
 		ServerMonitor = new Servidor(puertoMonitor,TurnosDelDia);
-		ServerVendedor = new Servidor(puertoVendedor,TurnosDelDia);
 		
-		ServerVendedor.StartServidorVendedor();
-		ServerCliente.StartServidorCliente();
 		ServerMonitor.StartServidorMonitor();
 		
-		//hola
 	}
 
 }

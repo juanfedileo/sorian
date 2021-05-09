@@ -8,13 +8,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import java.net.Socket;
+import java.util.Observable;
+import java.util.Observer;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JList;
 
-public class VentanaMonitor extends JFrame {
+public class VentanaMonitor extends JFrame implements Observer{
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -92,6 +94,12 @@ public class VentanaMonitor extends JFrame {
 		
 		JList list = new JList();
 		panel_5.add(list);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
