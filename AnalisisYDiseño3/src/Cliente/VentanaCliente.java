@@ -74,7 +74,7 @@ public class VentanaCliente extends JFrame {
 					
 				try {
 					
-					Socket socket = new Socket("localhost",5000);
+					Socket socket = new Socket("192.168.0.53",5000);
 					PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 					BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 					
