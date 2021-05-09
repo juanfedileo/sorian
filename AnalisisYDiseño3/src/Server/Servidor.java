@@ -36,8 +36,8 @@ public class Servidor {
 						String DNI = in.readLine();
 						int turnoID = Gestor.CreadorTurno(DNI);
 						out.println(turnoID);
-						socket.close();
-						serverSocketCliente.close();
+						//socket.close();
+						//serverSocketCliente.close();
 					}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -57,7 +57,7 @@ public class Servidor {
 			public void run() {
 				try {
 					ServerSocket serverSocket = new ServerSocket(1234);
-					while (Port == 1234) {
+					while (!serverSocket.isClosed()) {
 						Socket socket = serverSocket.accept();
 						PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 						BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -65,7 +65,7 @@ public class Servidor {
 						// String DNI = in.readLine();
 						// int turnoID = CreadorTurno(DNI);
 						// out.println(turnoID);
-						socket.close();
+						//socket.close();
 					}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -88,7 +88,7 @@ public class Servidor {
 				Turno SiguienteTurno;
 				try {
 					ServerSocket serverSocketVendedor = new ServerSocket(4949);
-					while (Port == 4949) {
+					while (!serverSocketVendedor.isClosed()) {
 
 						Socket socket = serverSocketVendedor.accept();
 						PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
