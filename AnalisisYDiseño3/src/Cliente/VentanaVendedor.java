@@ -104,12 +104,14 @@ public class VentanaVendedor extends JFrame {
 					BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 					
 					String documento = in.readLine();
-					int turnoActual = in.read();
+					//int turnoActual = in.read();
 					
 					String TurnoID = in.readLine();
 					
+					System.out.println(documento+" "+TurnoID);
+					
 					TextField_Doc.setText(documento);
-					TextField_Doc.setText(""+turnoActual);
+					TextField_Turno.setText(TurnoID);
 					socket.close();
 					out.close();
 				}

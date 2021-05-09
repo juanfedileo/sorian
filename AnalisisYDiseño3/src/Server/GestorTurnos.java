@@ -28,6 +28,7 @@ public class GestorTurnos {
 		
 		if (ListaTurnos.isEmpty() == false){
 			Turno siguiente = ListaTurnos.get(0);
+			ListaTurnos.remove(0);
 			return siguiente;
 		}
 		else {

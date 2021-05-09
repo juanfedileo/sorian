@@ -36,8 +36,7 @@ public class Servidor {
 						String DNI = in.readLine();
 						int turnoID = Gestor.CreadorTurno(DNI);
 						out.println(turnoID);
-						//socket.close();
-						//serverSocketCliente.close();
+						socket.close();
 					}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -96,14 +95,19 @@ public class Servidor {
 
 						SiguienteTurno = Gestor.getNextTurn();
 
-						if (SiguienteTurno == null) {
+						if (SiguienteTurno != null) {
 
 							String DNI = SiguienteTurno.getDNI();
+							String TurnoID = ""+SiguienteTurno.getTurnoID();
+							
+							System.out.println(DNI+" "+TurnoID);
+
+							
 							out.println(DNI);
-							out.println(SiguienteTurno.getTurnoID());
+							out.println(TurnoID);
 						}
+						System.out.println(SiguienteTurno.toString());
 						socket.close();
-						serverSocketVendedor.close();
 					}
 
 				} catch (IOException e) {
