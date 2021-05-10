@@ -29,9 +29,9 @@ import javax.swing.JTextPane;
 public class VentanaMonitor extends JFrame implements Observer{
 
 	private JPanel contentPane;
+	private JTextArea textSiguientes;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
 	/**
 	 * Launch the application.
 	 */
@@ -103,13 +103,9 @@ public class VentanaMonitor extends JFrame implements Observer{
 		panel.add(panel_5, BorderLayout.CENTER);
 		panel_5.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JTextArea textSiguientes = new JTextArea();
+		textSiguientes = new JTextArea();
+		textSiguientes.setEditable(false);
 		panel_5.add(textSiguientes);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(40);
-		textField_2.setEditable(false);
-		panel_5.add(textField_2);
 	}
 	
 	
@@ -124,7 +120,7 @@ public class VentanaMonitor extends JFrame implements Observer{
 			aux += turnoactual.getDNI()+" "+turnoactual.getTurnoID()+" \n";
 			
 		}
-		textField_2.setText(aux);
+		textSiguientes.setText(aux);
 		System.out.println("me activé");
 		
 	}
