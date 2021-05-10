@@ -2,11 +2,12 @@ package Server;
 
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Observer;
 
 import Cliente.VentanaMonitor;
 
 public class GestorTurnos extends Observable {
-
+	
 	ArrayList<Turno> listaTurnos;
 	private static GestorTurnos instance = null;
 	
@@ -27,6 +28,8 @@ public class GestorTurnos extends Observable {
 		try {
 			NuevoTurno = new Turno(DNI);
 			listaTurnos.add(NuevoTurno);
+			setChanged();
+			notifyObservers(listaTurnos);
 			return NuevoTurno.getTurnoID();
 		}
 		catch(TurnoInvalidoException e) {
@@ -40,6 +43,8 @@ public class GestorTurnos extends Observable {
 		if (listaTurnos.isEmpty() == false){
 			Turno siguiente = listaTurnos.get(0);
 			listaTurnos.remove(0);
+			setChanged();
+			notifyObservers(listaTurnos);
 			return siguiente;
 		}
 		else {
@@ -53,7 +58,5 @@ public class GestorTurnos extends Observable {
 		return listaTurnos;
 	}
 
-	
-	
 	
 }

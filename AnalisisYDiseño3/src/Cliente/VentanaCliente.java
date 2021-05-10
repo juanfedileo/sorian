@@ -31,7 +31,7 @@ public class VentanaCliente extends JFrame {
 	private int TurnoID;
 	private JTextField textField_Muestrodoc;
 	private JTextField textField_MuestroTurno;
-	int port = 5000;
+	
 	/**
 	 * Launch the application.
 	 */

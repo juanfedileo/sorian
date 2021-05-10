@@ -3,11 +3,17 @@ package Cliente;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Server.GestorTurnos;
+import Server.Turno;
+
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 import java.awt.GridLayout;
@@ -15,13 +21,17 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JList;
+import javax.swing.JTextArea;
+import javax.swing.DropMode;
+import javax.swing.JTextPane;
 
+@SuppressWarnings("deprecation")
 public class VentanaMonitor extends JFrame implements Observer{
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
-
+	private JTextField textField_2;
 	/**
 	 * Launch the application.
 	 */
@@ -91,14 +101,31 @@ public class VentanaMonitor extends JFrame implements Observer{
 		
 		JPanel panel_5 = new JPanel();
 		panel.add(panel_5, BorderLayout.CENTER);
+		panel_5.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JList list = new JList();
-		panel_5.add(list);
+		JTextArea textSiguientes = new JTextArea();
+		panel_5.add(textSiguientes);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(40);
+		textField_2.setEditable(false);
+		panel_5.add(textField_2);
 	}
-
+	
+	
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+		String aux= "";
+		Turno turnoactual;
+		ArrayList<Turno> lista = (ArrayList<Turno>) arg;
+		Iterator it= lista.iterator();
+		while (it.hasNext()) {
+			turnoactual=(Turno)it.next();
+			aux += turnoactual.getDNI()+" "+turnoactual.getTurnoID()+" \n";
+			
+		}
+		textField_2.setText(aux);
+		System.out.println("me activé");
 		
 	}
 
